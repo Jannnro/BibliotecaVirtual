@@ -1,5 +1,6 @@
 package com.janelson.biblioteca.service;
 
+import com.janelson.biblioteca.exception.RecursoNaoEncontradoException;
 import com.janelson.biblioteca.model.Obra;
 import com.janelson.biblioteca.repository.ObraRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class ObraService {
 
     public Obra buscarPorId(String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Obra não encontrada"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Obra não encontrada"));
     }
 
     public Obra salvar(Obra obra) {

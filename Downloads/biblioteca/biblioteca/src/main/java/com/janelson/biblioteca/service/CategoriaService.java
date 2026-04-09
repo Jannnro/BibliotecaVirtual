@@ -1,5 +1,6 @@
 package com.janelson.biblioteca.service;
 
+import com.janelson.biblioteca.exception.RecursoNaoEncontradoException;
 import com.janelson.biblioteca.model.Categoria;
 import com.janelson.biblioteca.repository.CategoriaRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class CategoriaService {
 
     public Categoria buscarPorId(Integer id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Categoria não encontrada"));
     }
 
     public Categoria salvar(Categoria categoria) {

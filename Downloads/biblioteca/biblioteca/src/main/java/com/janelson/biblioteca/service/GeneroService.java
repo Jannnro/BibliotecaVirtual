@@ -1,5 +1,6 @@
 package com.janelson.biblioteca.service;
 
+import com.janelson.biblioteca.exception.RecursoNaoEncontradoException;
 import com.janelson.biblioteca.model.Categoria;
 import com.janelson.biblioteca.model.Genero;
 import com.janelson.biblioteca.repository.GeneroRepository;
@@ -20,7 +21,7 @@ public class GeneroService {
 
     public Genero buscarPorId(Integer id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Genero não encontrada"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Gênero não encontrado"));
     }
 
     public Genero salvar(Genero genero) {

@@ -1,6 +1,9 @@
 package com.janelson.biblioteca.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import java.util.List;
 
@@ -15,10 +18,13 @@ public class Obra {
     private String idObra;
 
     @Column(name = "titulo", nullable = false, length = 200)
+    @NotBlank(message = "Título é obrigatório")
+    @Size(max = 200, message = "Título deve ter no máximo 200 caracteres")
     private String titulo;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
+    @NotNull(message = "Categoria é obrigatória")
     private Categoria categoria;
 
     @Column(name = "ano_publicacao")

@@ -4,18 +4,22 @@ import com.janelson.biblioteca.model.Autor;
 import com.janelson.biblioteca.model.Genero;
 import com.janelson.biblioteca.service.AutorService;
 import com.janelson.biblioteca.service.GeneroService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Data
 @RestController
 @RequestMapping("/autores")
 @RequiredArgsConstructor
+
 public class AutorController {
 
     private final AutorService service;
+
 
     @GetMapping
     public List<Autor> listarTodos() {

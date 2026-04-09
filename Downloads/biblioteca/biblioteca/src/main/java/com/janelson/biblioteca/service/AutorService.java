@@ -1,19 +1,22 @@
 package com.janelson.biblioteca.service;
 
+import com.janelson.biblioteca.exception.RecursoNaoEncontradoException;
 import com.janelson.biblioteca.model.Autor;
-import com.janelson.biblioteca.model.Genero;
 import com.janelson.biblioteca.repository.AutorRepository;
-import com.janelson.biblioteca.repository.GeneroRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Data
 @Service
-@RequiredArgsConstructor
 public class AutorService {
 
     private final AutorRepository repository;
+
+    public AutorService(AutorRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Autor> listarTodos() {
         return repository.findAll();
@@ -21,7 +24,7 @@ public class AutorService {
 
     public Autor buscarPorId(Integer id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Genero não encontrada"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Autor não encontrado"));
     }
 
     public Autor salvar(Autor autor) {
